@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getData() {
 
-        httpService.getEmployeesObserv()
+        httpService.getEmployeesObservable()
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Object>() {
                     @Override

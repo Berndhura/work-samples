@@ -13,9 +13,7 @@ import retrofit2.http.GET;
 
 public class HttpService {
 
-    private WebService mWebService;
-    private Retrofit.Builder builder;
-    private Retrofit restAdapter;
+    private final WebService mWebService;
 
     private static final String WEB_SERVICE_BASE_URL = "http://dummy.restapiexample.com/api/v1/";
 
@@ -33,13 +31,13 @@ public class HttpService {
                 .setLenient()
                 .create();
 
-        this.builder = new Retrofit.Builder()
+        Retrofit.Builder builder1 = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(WEB_SERVICE_BASE_URL)
                 .client(builder.build());
 
-        restAdapter = this.builder.build();
+        Retrofit restAdapter = builder1.build();
 
         mWebService = restAdapter.create(WebService.class);
     }
@@ -50,7 +48,7 @@ public class HttpService {
         Observable<Object> getEmployees();
     }
 
-    public Observable<Object> getEmployeesObserv() {
+    public Observable<Object> getEmployeesObservable() {
         return mWebService.getEmployees();
     }
 }
