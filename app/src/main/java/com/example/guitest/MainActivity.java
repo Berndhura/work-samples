@@ -2,6 +2,8 @@ package com.example.guitest;
 
 import android.os.Bundle;
 
+import com.example.guitest.data.Employee;
+
 import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -25,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
         httpService.getEmployeesObservable()
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Object>() {
+                .subscribe(new Observer<Employee>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Object value) {
+                    public void onNext(Employee value) {
                         int i = 0;
                     }
 

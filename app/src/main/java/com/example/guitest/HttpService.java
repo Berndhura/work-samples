@@ -1,5 +1,6 @@
 package com.example.guitest;
 
+import com.example.guitest.data.Employee;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -45,10 +46,10 @@ public class HttpService {
     private interface WebService {
 
         @GET("employees")
-        Observable<Object> getEmployees();
+        Observable<Employee> getEmployees();
     }
 
-    public Observable<Object> getEmployeesObservable() {
+    public Observable<Employee> getEmployeesObservable() {
         return mWebService.getEmployees();
     }
 }
