@@ -4,4 +4,8 @@
  - Gson
  - Facebook Login
  - Image download with Picassa
+ - RecyclerView
+ - Firebase Login, Database
+ - Butterknife
+ - Dagger
  
