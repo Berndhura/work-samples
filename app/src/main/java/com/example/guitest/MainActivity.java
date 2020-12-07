@@ -1,7 +1,9 @@
 package com.example.guitest;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.guitest.data.Data;
 import com.example.guitest.data.Employee;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(Employee value) {
-                        int i = 0;
+
+                        for (Data data : value.getData()) {
+                            Log.d("CONAN", "Name: " + data.getEmployee_name());
+                        }
                     }
 
                     @Override

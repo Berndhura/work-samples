@@ -23,28 +23,42 @@ public class HttpService {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        //api/V3
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
-        builder.addInterceptor(logging);
+        okHttpBuilder.addInterceptor(logging);
 
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
-        Retrofit.Builder builder1 = new Retrofit.Builder()
+        Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(WEB_SERVICE_BASE_URL)
-                .client(builder.build());
+                .client(okHttpBuilder.build());
 
-        Retrofit restAdapter = builder1.build();
+        Retrofit restAdapter = retrofitBuilder.build();
 
         mWebService = restAdapter.create(WebService.class);
     }
 
     private interface WebService {
 
+        /* GET /employees
+        response:
+        {
+        "status": "success",
+        "data": [
+            {
+            "id": "1",
+            "employee_name": "Tiger Nixon",
+            "employee_salary": "320800",
+            "employee_age": "61",
+            "profile_image": ""
+            },
+            ....
+            ]
+         }*/
         @GET("employees")
         Observable<Employee> getEmployees();
     }
